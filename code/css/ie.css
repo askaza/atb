@@ -1,0 +1,23 @@
+/* zoomin */
+.clearfix,
+.ui-tabs-nav, 
+.equal-height__columns, 
+.download-list, 
+.equal-height__top 
+{
+	*zoom:1;
+}
+
+
+.period-menu__item {
+	display: inline;
+	zoom:1;
+}
+
+.wrap {
+	overflow:hidden;
+	zoom:1;
+}
+.period-menu {
+	margin-right:9px;
+}
