@@ -1,0 +1,153 @@
+html, body, div, span,strong, i, em, u,
+h1, h2, h3, h4, h5, h6, p, table, caption,
+tbody, tfoot, thead, tr, th, td,
+input, textarea {
+	margin:0;
+	padding:0;
+	border:0;
+	outline:0;
+	font-size:100%;
+	vertical-align:baseline;
+	background:transparent;
+}
+
+:focus {
+	outline:0;
+}
+
+
+
+/* fonts < */
+
+@font-face {
+    font-family: 'UbuntuRegular';
+    src: url('Ubuntu-R-webfont.eot');
+    src: url('Ubuntu-R-webfont.eot?#iefix') format('embedded-opentype'),
+         url('Ubuntu-R-webfont.woff') format('woff'),
+         url('Ubuntu-R-webfont.ttf') format('truetype'),
+         url('Ubuntu-R-webfont.svg#UbuntuRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'UbuntuBold';
+    src: url('Ubuntu-B-webfont.eot');
+    src: url('Ubuntu-B-webfont.eot?#iefix') format('embedded-opentype'),
+         url('Ubuntu-B-webfont.woff') format('woff'),
+         url('Ubuntu-B-webfont.ttf') format('truetype'),
+         url('Ubuntu-B-webfont.svg#UbuntuBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+/* fonts  > */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'UbuntuRegular';
+}
+
+
+body {
+	font-family: 'Arial', 'Helvetica', 'Geneva';
+	font-size:14px;
+	line-height: 1.2;
+}
+
+
+img, a img {
+	border:none;
+}
+ a {
+	color: #00adef;
+	text-decoration: underline;
+}
+a:hover {
+	text-decoration:none;
+}
+
+
+ul {
+	list-style: outside disc;
+	margin: 0 0 20px 0;
+	padding: 0;
+}
+
+ul li {
+	position:relative;
+	margin:0 0 0 28px;
+	padding: 0;
+}
+
+ol {
+	margin: 0 0 20px 0;
+    list-style:decimal;
+	padding: 0;
+}
+ol li {
+	position:relative;
+	margin:0 0 0 28px;
+	padding: 0;
+}
+
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-size: 12px;
+	margin-bottom: 15px;
+	width: 100%;
+}
+th,
+td {
+	text-align: left;
+	padding: 6px 5px 7px 0;
+	vertical-align: top;
+}
+td {
+	border-top:1px dotted #b2b2b2;
+}
+tbody tr:first-child td {
+	border-top:0;
+}
+th {
+	font-weight: bold;
+	border-bottom: 1px solid #999999;
+	padding: 5px 5px 5px 0;
+}
+
+tfoot td {
+	font-weight: bold;
+	border-top:2px solid #666666;
+	color:#333333;
+}
+
+
+/* main styles */
+
+.link-ico {
+    text-decoration: none;
+    position: relative;
+}
+
+
+
+
+
+/* clear */
+
+.clearfix:after,
+.header .inner:after {
+	content: ".";
+    display: block;
+    height: 0;
+    width: 0;
+    clear: both;
+    visibility: hidden;
+    font-size: 0;
+}
+
