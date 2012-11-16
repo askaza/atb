@@ -44,60 +44,59 @@
 
 			panoramaContainer = $(this).parent();
 			panoramaContainer.css('height', elemHeight+'px').css('overflow', 'hidden').wrap("<div class='panorama-viewport'></div>").parent().css('width',settings.viewport_width+'px')
-				.append("<div class='panorama-control'><a href='#' class='panorama-control-left'><<</a> <a href='#' class='panorama-control-pause'>x</a> <a href='#' class='panorama-control-right'>>></a> </div>");
+				.append("<a href='#' class='panorama-control-left'><<</a> <a href='#' class='panorama-control-right'>>></a> ");
 
 			panoramaViewport = panoramaContainer.parent();
 
-			panoramaViewport.css('height', elemHeight+'px').css('overflow', 'hidden').find('a.panorama-control-left').bind('click', function() {
+			panoramaViewport.css('height', elemHeight+'px').css('overflow', 'hidden').find('a.panorama-control-left').bind('click', function() {	
 				$(panoramaContainer).stop();
 				settings.direction = 'right';
 				animate_left(panoramaContainer, elemWidth, settings);
 				return false;
 			});
-			panoramaViewport.bind('click', function() {
-				$(panoramaContainer).stop();
-			});
+		
+			
 			panoramaViewport.find('a.panorama-control-right').bind('click', function() {
 				$(panoramaContainer).stop();
 				settings.direction = 'left';
 				animate_right(panoramaContainer, elemWidth, settings);
 				return false;
 			});
-			panoramaViewport.find('a.panorama-control-pause').bind('click', function() {
-				$(panoramaContainer).stop();
-				return false;
-			});
-
-
-
+			
 			$(this).parent().css('margin-left', '-'+settings.start_position+'px');
 
 			if (settings.auto_start)
 				panorama_animate(panoramaContainer, elemWidth, settings);
+			
+				$(window).resize(function() {
+				var windowsize = $(window).width();
+				$('.panorama-viewport').width(windowsize);
+				$('.panorama-container').css('margin-left', '0');
+		});
 
 		});
 
-
+		
 
 		function animate_right (element, elemWidth, settings) {
-		    currentPosition = parseInt($(element).css('margin-left'));
+			currentPosition = parseInt($(element).css('margin-left'));
 		    var rightlimit;
 		    rightlimit = elemWidth - $(window).width();
 
 		    if ( currentPosition - 300 < -rightlimit) {
-			 $(element).animate({ marginLeft: -rightlimit}, ((settings.speed / elemWidth)*300) , 'easeInOutCubic');
+			 $(element).animate({marginLeft: -rightlimit}, ((settings.speed / elemWidth)*300) , 'easeInOutCubic');
 		    } else {
-			$(element).animate({ marginLeft: currentPosition - 400}, ((settings.speed / elemWidth)*300) , 'easeInOutCubic');
+			$(element).animate({marginLeft: currentPosition - 400}, ((settings.speed / elemWidth)*300) , 'easeInOutCubic');
 		    }
 		}
 
-		  function animate_left (element, elemWidth, settings) {
+		  function animate_left (element, elemWidth, settings) {		
 		   currentPosition = parseInt($(element).css('margin-left'));
 
 		    if ( currentPosition + 400 > 0) {
-			 $(element).animate({ marginLeft: 0}, ((settings.speed / elemWidth)*300) , 'easeInOutCubic');
+			 $(element).animate({marginLeft: 0}, ((settings.speed / elemWidth)*300) , 'easeInOutCubic');
 		    } else {
-			$(element).animate({ marginLeft: currentPosition + 400}, ((settings.speed / elemWidth)*300) , 'easeInOutCubic');
+			$(element).animate({marginLeft: currentPosition + 400}, ((settings.speed / elemWidth)*300) , 'easeInOutCubic');
 		    }
 		  }
 
@@ -107,24 +106,20 @@
 		    var rightlimit;
 		    if (settings.direction == 'right') {
 
-		$(element).animate({  marginLeft: 0}, ((settings.speed / elemWidth) * (currentPosition)) , 'linear', function (){
+		$(element).animate({marginLeft: 0}, ((settings.speed / elemWidth) * (currentPosition)) , 'linear', function (){
 		    settings.direction = 'left';
 		    panorama_animate(element, elemWidth, settings);
 		});
 		     } else {
 		rightlimit = elemWidth-settings.viewport_width;
-		$(element).animate({ marginLeft: -rightlimit }, ((settings.speed / rightlimit) * (rightlimit - currentPosition)), 'linear', function (){
+		$(element).animate({marginLeft: -rightlimit}, ((settings.speed / rightlimit) * (rightlimit - currentPosition)), 'linear', function (){
 		    settings.direction = 'right';
 		    panorama_animate(element, elemWidth, settings);
 		});
 	    }
 	}
 
-		$(window).resize(function() {
-		    var windowsize = $(window).width();
-		    $('.panorama-viewport').width(windowsize);
-		    $('.panorama-container').css('margin-left', '0');
-		});
+	
     };
 
 })(jQuery);

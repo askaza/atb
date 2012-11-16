@@ -1,23 +1,17 @@
 /* zoomin */
 .clearfix,
-.ui-tabs-nav, 
-.equal-height__columns, 
-.download-list, 
-.equal-height__top 
-{
+.menu, 
+.main .inner, 
+.blue-box, 
+.two-columns, 
+.pcb_types {
 	*zoom:1;
 }
 
-
-.period-menu__item {
-	display: inline;
-	zoom:1;
+.menu_dropdown {
+	z-index: expression(runtimeStyle.zIndex = 1, insertAdjacentHTML('afterBegin', '<span class="menu-corner">&mdash;</span> '));
 }
 
 .wrap {
-	overflow:hidden;
 	zoom:1;
-}
-.period-menu {
-	margin-right:9px;
 }
