@@ -48,26 +48,34 @@
 
 			panoramaViewport = panoramaContainer.parent();
 
-			panoramaViewport.css('height', elemHeight+'px').css('overflow', 'hidden').find('a.panorama-control-left').bind('click', function() {	
+			panoramaViewport.css('height', elemHeight+'px').css('overflow', 'hidden').find('a.panorama-control-left').bind('click', function() {
 				$(panoramaContainer).stop();
 				settings.direction = 'right';
-				animate_left(panoramaContainer, elemWidth, settings);
+				panorama_animate(panoramaContainer, elemWidth, settings);
 				return false;
 			});
-		
-			
+
+
 			panoramaViewport.find('a.panorama-control-right').bind('click', function() {
 				$(panoramaContainer).stop();
 				settings.direction = 'left';
-				animate_right(panoramaContainer, elemWidth, settings);
+				panorama_animate(panoramaContainer, elemWidth, settings);
 				return false;
 			});
-			
+
 			$(this).parent().css('margin-left', '-'+settings.start_position+'px');
 
-			if (settings.auto_start)
+			if (settings.auto_start) {
 				panorama_animate(panoramaContainer, elemWidth, settings);
-			
+			}
+
+
+			$('.panorama__img').mouseover(function(){
+			$(panoramaContainer).stop();
+				return false;
+			}).mouseout(function() {
+			    panorama_animate(panoramaContainer, elemWidth, settings);
+			});
 				$(window).resize(function() {
 				var windowsize = $(window).width();
 				$('.panorama-viewport').width(windowsize);
@@ -76,29 +84,9 @@
 
 		});
 
-		
 
-		function animate_right (element, elemWidth, settings) {
-			currentPosition = parseInt($(element).css('margin-left'));
-		    var rightlimit;
-		    rightlimit = elemWidth - $(window).width();
 
-		    if ( currentPosition - 300 < -rightlimit) {
-			 $(element).animate({marginLeft: -rightlimit}, ((settings.speed / elemWidth)*300) , 'easeInOutCubic');
-		    } else {
-			$(element).animate({marginLeft: currentPosition - 400}, ((settings.speed / elemWidth)*300) , 'easeInOutCubic');
-		    }
-		}
 
-		  function animate_left (element, elemWidth, settings) {		
-		   currentPosition = parseInt($(element).css('margin-left'));
-
-		    if ( currentPosition + 400 > 0) {
-			 $(element).animate({marginLeft: 0}, ((settings.speed / elemWidth)*300) , 'easeInOutCubic');
-		    } else {
-			$(element).animate({marginLeft: currentPosition + 400}, ((settings.speed / elemWidth)*300) , 'easeInOutCubic');
-		    }
-		  }
 
 
 		function panorama_animate(element, elemWidth, settings) {
@@ -119,7 +107,7 @@
 	    }
 	}
 
-	
+
     };
 
 })(jQuery);
